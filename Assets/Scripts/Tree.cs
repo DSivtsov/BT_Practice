@@ -1,3 +1,4 @@
+using Lessons.AI.LessonBehaviourTree;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +11,12 @@ namespace Sample
 
         [SerializeField]
         private int remainingResources = 10;
+
+        private BT_SensorForest sensorForest;
+        private void Awake()
+        {
+            sensorForest = BT_SensorForest.Instance;
+        }
 
         public bool HasResources()
         {
@@ -28,6 +35,7 @@ namespace Sample
 
             if (this.remainingResources <= 0)
             {
+                this.sensorForest.TreeDeactivated(this);
                 this.gameObject.SetActive(false);
             }
             else

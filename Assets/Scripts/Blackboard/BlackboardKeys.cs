@@ -10,5 +10,8 @@ namespace Lessons.AI.HierarchicalStateMachine
         public const string STOPPING_DISTANCE = "StoppingDistance";
 
         public const string NEAREST_TREE = "NearestTree";
+        
+        public const string NUM_TREE = "NumberTrees";
+        public const string ARR_TREE = "ArrTrees";
     }
 }
