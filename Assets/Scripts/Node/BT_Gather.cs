@@ -12,6 +12,7 @@ namespace Lessons.AI.LessonBehaviourTree
         [SerializeField]
         private Blackboard blackboard;
 
+        private Coroutine coroutine;
         protected override void Run()
         {
              if (!this.blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
@@ -25,22 +26,33 @@ namespace Lessons.AI.LessonBehaviourTree
                  this.Return(false);
                  return;
              }
-
-             if (!tree.HasResources())
-             {
-                 this.Return(false);
-                 return;
-             }
-
-             StartCoroutine(GetResource(tree, unit));
+             this.coroutine = StartCoroutine(GetResource(tree, unit));
              
         }
 
+        protected override void OnDispose()
+        {
+            if (this.coroutine != null)
+            {
+                this.StopCoroutine(this.coroutine);
+                this.coroutine = null;
+            }
+        }
+        
         private IEnumerator GetResource(Tree tree, Character unit)
         {
+            do
+            {
+                if (!tree.HasResources())
+                {
+                    this.Return(false);
+                    yield break;
+                }
             
-            unit.Chop(tree);
-            yield return new WaitForSeconds(1f);
+                unit.Chop(tree);
+                yield return new WaitForSeconds(1f);
+                
+            } while (!unit.IsResourceBagFull());
             
             this.Return(true);
         }
