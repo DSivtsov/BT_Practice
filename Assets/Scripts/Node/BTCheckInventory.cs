@@ -5,26 +5,26 @@ using Blackboard = Lessons.AI.HierarchicalStateMachine.Blackboard;
 
 namespace Lessons.AI.LessonBehaviourTree
 {
-    public sealed class BT_CheckInventory : BehaviourNode
+    public sealed class BTCheckInventory : BehaviourNode
     {
         [SerializeField]
-        private Blackboard blackboard;
+        private Blackboard _blackboard;
 
         protected override void Run()
         {
-             if (!this.blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
+             if (!_blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
              {
-                 this.Return(false);
+                 Return(false);
                  return;
              }
 
              if (unit.IsResourceBagFull())
              {
-                 this.Return(true);
+                 Return(true);
                  return;
              }
              
-             this.Return(false);
+             Return(false);
         }
     }
 }

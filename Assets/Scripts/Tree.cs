@@ -12,10 +12,10 @@ namespace Sample
         [SerializeField]
         private int remainingResources = 10;
 
-        private BT_SensorForest forestSensor;
+        private BTSensorForest forestSensor;
         private void Awake()
         {
-            forestSensor = BT_SensorForest.Instance;
+            forestSensor = BTSensorForest.Instance;
         }
 
         public bool HasResources()

@@ -7,35 +7,35 @@ using Tree = Sample.Tree;
 
 namespace Lessons.AI.LessonBehaviourTree
 {
-    public sealed class BT_Gather : BehaviourNode
+    public sealed class BTGather : BehaviourNode
     {
         [SerializeField]
-        private Blackboard blackboard;
+        private Blackboard _blackboard;
 
-        private Coroutine coroutine;
+        private Coroutine _coroutine;
         protected override void Run()
         {
-             if (!this.blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
+             if (!_blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
              {
-                 this.Return(false);
+                 Return(false);
                  return;
              }
              
-             if (!this.blackboard.TryGetVariable(BlackboardKeys.NEAREST_TREE, out Tree tree))
+             if (!_blackboard.TryGetVariable(BlackboardKeys.NEAREST_TREE, out Tree tree))
              {
-                 this.Return(false);
+                 Return(false);
                  return;
              }
-             this.coroutine = StartCoroutine(GetResource(tree, unit));
+             _coroutine = StartCoroutine(GetResource(tree, unit));
              
         }
 
         protected override void OnDispose()
         {
-            if (this.coroutine != null)
+            if (_coroutine != null)
             {
-                this.StopCoroutine(this.coroutine);
-                this.coroutine = null;
+                StopCoroutine(_coroutine);
+                _coroutine = null;
             }
         }
         
@@ -45,7 +45,7 @@ namespace Lessons.AI.LessonBehaviourTree
             {
                 if (!tree.HasResources())
                 {
-                    this.Return(false);
+                    Return(false);
                     yield break;
                 }
             
@@ -54,7 +54,7 @@ namespace Lessons.AI.LessonBehaviourTree
                 
             } while (!unit.IsResourceBagFull());
             
-            this.Return(true);
+            Return(true);
         }
     }
 }

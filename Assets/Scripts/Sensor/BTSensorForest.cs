@@ -13,23 +13,23 @@ namespace Lessons.AI.LessonBehaviourTree
         event Action OnForestChanged;
 
     }
-    public class BT_SensorForest : MonoBehaviour, IForest
+    public class BTSensorForest : MonoBehaviour, IForest
     {
         [SerializeField] private Transform parentForest;
 
         private Dictionary<Tree, Vector3> _forest;
         private HashSet<Tree> _activeTrees;
-        private static BT_SensorForest _instance;
+        private static BTSensorForest _instance;
         private Tree _nearestTree;
         private Vector3 _treePosition;
 
-        public static BT_SensorForest Instance
+        public static BTSensorForest Instance
         {
             get
             {
                 if (!_instance)
                 {
-                    _instance = FindObjectOfType<BT_SensorForest>();
+                    _instance = FindObjectOfType<BTSensorForest>();
                 }
                 return _instance;
             }
