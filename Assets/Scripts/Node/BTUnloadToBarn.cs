@@ -27,11 +27,12 @@ namespace Lessons.AI.LessonBehaviourTree
              if (barn.CanAddResources(unit.ResourceAmount))
              {
                  barn.AddResources(unit.UnloadResources());
-                 Return(true);
+                 //False will move Character to next Node - Gather Resource
+                 Return(false);
                  return;
              }
-             
-             Return(false);
+             //False will lead to Restart root Node and again Character will try to unload Resource
+             Return(true);
         }
     }
 }
