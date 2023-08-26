@@ -12,10 +12,10 @@ namespace Sample
         [SerializeField]
         private int remainingResources = 10;
 
-        private BT_SensorForest sensorForest;
+        private BT_SensorForest forestSensor;
         private void Awake()
         {
-            sensorForest = BT_SensorForest.Instance;
+            forestSensor = BT_SensorForest.Instance;
         }
 
         public bool HasResources()
@@ -35,7 +35,7 @@ namespace Sample
 
             if (this.remainingResources <= 0)
             {
-                this.sensorForest.TreeDeactivated(this);
+                this.forestSensor.TreeDeactivated(this);
                 this.gameObject.SetActive(false);
             }
             else

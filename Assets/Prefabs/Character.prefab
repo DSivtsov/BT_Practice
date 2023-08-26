@@ -1431,8 +1431,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8738278929463370890}
   - component: {fileID: 9054123119736449565}
+  - component: {fileID: 1794246352563762194}
   m_Layer: 0
-  m_Name: Gather
+  m_Name: Gather2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,6 +1473,19 @@ MonoBehaviour:
   - {fileID: 962568839}
   - {fileID: 258357606}
   - {fileID: 4190052071931666847}
+--- !u!114 &1794246352563762194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144530991933385097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7b52ccb7574cef95b60e10a81cf791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 6847397512381332435}
 --- !u!1 &6549048810329968924
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 65700196}
+  remainingResources: 8
 --- !u!95 &65700196
 Animator:
   serializedVersion: 4

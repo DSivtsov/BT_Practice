@@ -18,7 +18,7 @@ namespace Lessons.AI.HierarchicalStateMachine
             var blackboard = this.GetComponent<Blackboard>();
             blackboard.SetVariable(UNIT, this.unit);
             blackboard.SetVariable(BARN, this.barn);
-            blackboard.SetVariable(STOPPING_DISTANCE, 0.25f);
+            blackboard.SetVariable(STOPPING_DISTANCE, 0.75f);
         }
     }
 }
