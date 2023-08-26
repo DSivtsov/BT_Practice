@@ -35,8 +35,7 @@ namespace Sample
 
             if (this.remainingResources <= 0)
             {
-                this.forestSensor.TreeDeactivated(this);
-                this.gameObject.SetActive(false);
+                DeactivateTree();
             }
             else
             {
@@ -44,6 +43,13 @@ namespace Sample
             }
 
             return true;
+        }
+        
+        [Button]
+        private void DeactivateTree()
+        {
+            this.forestSensor.TreeDeactivated(this);
+            this.gameObject.SetActive(false);
         }
     }
 }

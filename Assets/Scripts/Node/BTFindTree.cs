@@ -9,7 +9,7 @@ namespace Lessons.AI.LessonBehaviourTree
     public sealed class BTFindTree : BehaviourNode
     {
         [SerializeField]
-        private Blackboard blackboard;
+        private Blackboard _blackboard;
 
         private Transform[] _trees;
 
@@ -21,7 +21,7 @@ namespace Lessons.AI.LessonBehaviourTree
         
         protected override void Run()
         {
-             if (!blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
+             if (!_blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
              {
                  Return(false);
                  return;
@@ -31,8 +31,8 @@ namespace Lessons.AI.LessonBehaviourTree
              
              if (nearestTree != null)
              {
-                 blackboard.SetVariable(BlackboardKeys.NEAREST_TREE, nearestTree);
-                 blackboard.SetVariable(BlackboardKeys.MOVE_POSITION, treePosition);
+                 _blackboard.SetVariable(BlackboardKeys.NEAREST_TREE, nearestTree);
+                 _blackboard.SetVariable(BlackboardKeys.MOVE_POSITION, treePosition);
                  Return(true);
              }
              else

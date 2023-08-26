@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Lessons.AI.LessonBehaviourTree
 {
-    public sealed class BTAborterOnForestChanged : MonoBehaviour
+    public sealed class BTRestartGatherOnForestChanged : MonoBehaviour
     {
-        [SerializeField] private BehaviourNode _nodeRoot;
+        [SerializeField] private BehaviourNodeSequenceRestartable _node;
         
         private IForest _iForest;
 
@@ -16,18 +16,18 @@ namespace Lessons.AI.LessonBehaviourTree
 
         private void OnEnable()
         {
-            _iForest.OnForestChanged += RestartNodeRoot;
+            _iForest.OnForestChanged += RestartNode;
         }
 
         private void OnDisable()
         {
-            _iForest.OnForestChanged -= RestartNodeRoot;
+            _iForest.OnForestChanged -= RestartNode;
         }
         
         [Button]
-        private void RestartNodeRoot()
+        private void RestartNode()
         {
-            _nodeRoot.Abort();
+            _node.Restart();
         }
     }
 }
