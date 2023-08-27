@@ -7,7 +7,9 @@ namespace Lessons.AI.HierarchicalStateMachine
         
         
         public const string MOVE_POSITION = "MovePosition";
-        public const string STOPPING_DISTANCE = "StoppingDistance";
+        public const string STOPPING_DISTANCE = "StoppingDistanceAtMove";
+        public const string STOPPING_DISTANCE_TREE = "StoppingDistanceNearTree";
+        public const string STOPPING_DISTANCE_BARN = "StoppingDistanceNearBarn";
 
         public const string NEAREST_TREE = "NearestTree";
         

@@ -54,15 +54,10 @@ namespace Lessons.AI.LessonBehaviourTree
         [Button]
         public void Restart()
         {
-            if (IsRunning)
-            {
-                OnAbort();
-                Run();
-            }
-            else
-            {
-                Debug.LogWarning($"Restart canceled because IsRunning[{IsRunning}]");
-            }
+            if (!IsRunning) return;
+            
+            OnAbort();
+            Run();
         }
         
     }

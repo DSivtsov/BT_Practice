@@ -17,9 +17,16 @@ namespace Lessons.AI.LessonBehaviourTree
                 Return(false);
                 return;
             }
-
+            
+            if (!_blackboard.TryGetVariable(BlackboardKeys.STOPPING_DISTANCE_BARN, out float stoppingDistance))
+            {
+                Return(false);
+                return;
+            }
+            
             Vector3 targetPosition = barn.transform.position;
             _blackboard.SetVariable(BlackboardKeys.MOVE_POSITION, targetPosition);
+            _blackboard.SetVariable(BlackboardKeys.STOPPING_DISTANCE, stoppingDistance);
             Return(true);
         }
     }

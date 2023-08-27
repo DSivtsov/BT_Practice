@@ -10,6 +10,13 @@ namespace Lessons.AI.LessonBehaviourTree
         [SerializeField]
         private Blackboard _blackboard;
 
+        private Character _unit;
+        private BTUnloadBarnDispatcher _dispatcherBarn;
+        private void Awake()
+        {
+            _dispatcherBarn = BTUnloadBarnDispatcher.Instance;
+        }
+
         protected override void Run()
         {
              if (!_blackboard.TryGetVariable(BlackboardKeys.BARN, out Barn barn))
@@ -18,21 +25,33 @@ namespace Lessons.AI.LessonBehaviourTree
                  return;
              }
              
-             if (!_blackboard.TryGetVariable(BlackboardKeys.UNIT, out Character unit))
+             if (!_blackboard.TryGetVariable(BlackboardKeys.UNIT, out _unit))
              {
                  Return(false);
                  return;
              }
-             
-             if (barn.CanAddResources(unit.ResourceAmount))
+
+             if (barn.CanAddResources(_unit.ResourceAmount))
              {
-                 barn.AddResources(unit.UnloadResources());
-                 //False will move Character to next Node - Gather Resource
-                 Return(false);
+                 barn.AddResources(_unit.UnloadResources());
+                 Return(true);
                  return;
              }
-             //False will lead to Restart root Node and again Character will try to unload Resource
-             Return(true);
+
+             //will stay in current node util will be called from BTUnloadBarnDispatcher
+             _dispatcherBarn.OnRestartUnload += RestartNode;
+             _dispatcherBarn.StartWaitUnload();
+        }
+        
+        private void RestartNode()
+        {
+            _dispatcherBarn.OnRestartUnload -= RestartNode;
+            Run();
+        }
+
+        private void OnApplicationQuit()
+        {
+            _dispatcherBarn.OnRestartUnload -= RestartNode;
         }
     }
 }
